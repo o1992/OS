@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/cs/usr/chen_by/ClionProjects/os21/demo_itimer.c
+stdio.h
+-
+signal.h
+-
+sys/time.h
+-
+
+/cs/usr/chen_by/ClionProjects/os21/demo_jmp.c
+stdio.h
+-
+setjmp.h
+-
+signal.h
+-
+unistd.h
+-
+sys/time.h
+-
+
+/cs/usr/chen_by/ClionProjects/os21/demo_singInt_handler.c
+stdio.h
+-
+signal.h
+-
+unistd.h
+-
+
