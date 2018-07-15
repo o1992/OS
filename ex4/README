@@ -1,0 +1,91 @@
+chen_by, omerrubi
+204654172, 203678289
+EX: 4
+
+FILES:
+=====
+    common.h            --  contains the functions that are used by both the client and the server
+    whatsappClient.h    --  header file for whatsapp client
+    whatsappClient.cpp  --  implementation of the whatsapp client
+    whatsappServer.h    --  header file for whatsapp server
+    whatsappServer.cpp  --  implementation of the whatsapp server
+    whatsappio.h        --  header file for pre-implemented class (prints & parse)
+    whatsappio.cpp      --  implementation of whatsappio functions
+
+
+REMARKS:
+=======
+
+    Our design consists of a few parts:
+
+    In the file "common.h" we implemented functions that are used in both the server and the client. An example
+    for such is a function that verifies that an input consists of digits and letters only.
+
+    In addition, we created 2 classes - the server class and the client class. Each class has "a life of it's
+    own" - every class has a "main" function and operates independently.
+
+
+
+ANSWERS:
+=======
+
+
+Question 1:
+
+    a.  The client side should support the new command - a new tag should be added ("LEAVE") and the parsing
+        function should be changed to recognize it.
+        FurtherMore, we wrote a function "handleResponse", that handles the response from the server after
+        writing a command (i.e requesting something). This function should also be updated - it should correctly
+        receive the feedback from the server and print the correct message to the screen.
+
+    b.  The server side should handle this command by updating it's vector of groups (our data structure used
+        for groups is a vector of vectors. every group is held in a vector, and all groups are held in a vector).
+        The server should check if the group exists ( - if not return an error to client), and verify that the
+        client is a member (also here - is the client is not a member the server should return an error to the
+        client).
+        Finally, assuming the request is valid - the server should erase the client from the the relevant group
+        vector, and send an indication to the client that the removal was successful.
+
+
+Question 2:
+
+    In TCP protocol, a "hand-shake" is preformed upon connection, and it is verified that the other side received
+    the messages. On the other hand, UDP protocol does not require a "hand-shake", meaning it does not verify that
+    the other side received the messages. Furthermore, UDP "doesn't mind" losing a few bits here and there along
+    the connection.
+
+    In this exercise, we created a messaging platform, in which the connection is crucial. The server and client
+    must "talk", and communicate with each-other. Therefore, the "hand-shake" protocol is necessary here - if not
+    so, the client will not know if the server received his request and if it succeeded, for instance.
+    Another important element is the messages. The TCP protocol verifies that the data is fully transferred,
+    without loss. In a messaging platform, every letter and every bit matter, and we clearly prefer the reliability
+    of the TCP rather than the speed of the UDP (but with optional loss of data).
+
+
+Question 3:
+
+    Applications that use UDP protocol:
+
+        a. Media Streaming:     In media streaming, a loss of a single frame (or even a few) is insignificant -
+                                it's use is only momentary and does not need to be saved. Furthermore, the UDP
+                                protocol delivers the data faster, and the broadcast's speed is important.
+
+        b  Games:               Some games do not care if the user receives each and every data packet. Here as
+                                well, the data is relevant only for a very short time and the speed is much more
+                                important. If a single frame is lost, it is not a big deal.
+
+
+Question 4:
+
+    High level design for recover from failures:
+    We will periodically save the data of the server to the Hard-drive.
+
+    The data backup will occur periodically, in an interval chosen when creating the object.
+    In every interval, we will save the data on the server (i.e the data structure of groups
+    and the data structure of connected clients) to the hard-drive.
+
+    The data will be saved to a specific location to a file that has the server's name.
+
+    In this way, even if the server crashes - the backed up data provides a pretty good recover
+    (though not perfect, of course). We can access the recovery data by re-launching a server
+    with the same name as the one that crashed (and then it will know to find the backup file).

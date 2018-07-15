@@ -1,0 +1,60 @@
+chen_by, omerrubi
+204654172, 203678289
+EX: 2
+
+FILES:
+Thread.cpp -- consists of class Thread, a single thread object
+Thread.h -- Thread headers
+uthreads.cpp -- uthreads library
+
+REMARKS:
+
+
+ANSWERS:
+
+
+Question 1:
+
+User level thraeds are good if we want to handle a large user-demanded calculation, which is not at top priority, 
+and in the same time we still want to be able to handle basic or light other tasks quickly.
+User level threads are a reasonable choice here because they are perfect for quick and rather non-demanding tasks - 
+they are spawned faster than kernal level threads, and switch faster (as there is no OS priority to be done).
+
+
+
+question 2:
+
+Advantages:
+   - Every tab is independent, so even if a single tab fails or collapses - all other tabs will keep functioning 
+	and will remain good.
+   - Every tab has it's own resources, therefore if a single tab is very demanding - it will not slow down the other tabs.
+   
+Disadvantages:
+   - High overhead transferring proccesses, as oppose to faster transfer between threads.
+   - High resource use.
+   - Expensive communication between proccesses.
+
+
+Question 3:
+
+As asked, we opened the shell and terminated a proccess. The following proccess was issued:
+	- The keyboard sent an I\O interrupt to the OS, and the OS responded by printing words to the shell. 
+	- We then gave the order to kill the proccess, and that caused the OS to send a SIG_KILL command. 
+	- Upon sending that command, the OS sends the command to the proccess with that id.
+	The proccess can be terminated in one of two ways: 
+		- if it has it's own terminator, it will terminate itself "safely" and "neatly".
+		- if not, the OS will terminate.
+
+
+Question 4:
+
+Virtual time - the time when the proccess is using the CPU (i.e. actually executing).
+Real time - the total time the proccess used the OS, which includes overhead, swithcing etc.
+
+virtual time can be used for scheduling threads (i.e for OS use), and real time can be used for user information
+(for example, when installing a program - how long did it take so far or how much more should it approximately take).
+
+
+
+
+

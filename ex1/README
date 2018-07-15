@@ -1,0 +1,34 @@
+chen_by, omerrubi
+204654172, 203678289
+EX: 1
+
+FILES:
+osm.cpp -- consists of the osm functions
+osm.h -- osm headers
+
+REMARKS:
+
+
+ANSWERS:
+
+
+Assignment 1:
+
+The program creates the folder "Welcome", if it does not exist.
+Then, creates the folder "To", if it doesn't already exist. This folder is created under the folder "welcome".
+The program then successfully opens a file called "OS2018" in "write-only" mode inside "To"
+folder, or creates a new file in such name if it does not exist, and truncates (shortens) 
+it to length 0.
+Now, the program then points a pointer to the "OS2018" file.
+The program writes the following lines to the file:
+		(user name, in our case - chen_by)
+		If you haven't read the course guidelines yet --- do it right now!
+		(user input, in our case - "good luck") 
+
+The program then closes the file "OS2018".
+It deletes the file "OS2018".
+Then, it deletes the folder "To".
+Then, it deletes the folder "Welcome".
+Finally, it terminates all threads in the calling process's thread group, and finishes.
+
+

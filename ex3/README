@@ -1,0 +1,10 @@
+chen_by, omerrubi
+204654172, 203678289
+EX: 3
+
+FILES:
+MapReduceFramework.cpp -- MapReduce framework, build as a library.
+Barrier.cpp -- Threads barrier resource code.
+Barrier.h -- Threads barrier resource .h file.
+
+REMARKS:

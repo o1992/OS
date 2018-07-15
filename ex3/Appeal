@@ -1,0 +1,59 @@
+
+EX3 APPEAL
+==========
+
+Names:  Chen Ben-Yashar, Chen_by, 2046541762
+        Omer Rubinstein, omerrubi, 203678289
+
+This appeal is for OS course, EX3.
+The original submission failed all tests, but one (passed test13, valgrind).
+The new submission passes all tests (1-13).
+
+We have made 2 minor changes to the code, so it now passes all tests:
+
+    Change #1:
+    ---------
+    ORIGINAL LINE:
+        while ((unsigned int) (*(tc->atomic_counter)) != (tc->inputVec->size()))
+    NEW LINE:
+        while ((unsigned int) (*(tc->atomic_counter)) < (tc->inputVec->size()))
+
+    (MapReduceFramework, Line 135)
+    As can be seen, the only difference is the operator: the != was changed to <.
+    This line appears in the doMap function, during which the threads "eat" the
+    input vector and map.
+    We had a minor misunderstanding in how exactly the atomic counter works - we
+    thought that because it was an atomic variable, and all threads see the same
+    atomic variable - that it would not go over the size of the input vector (which
+    is the stopping condition). Unfortunately, we were wrong, but with this very
+    minor change - it was fixed.
+
+
+    Change #2:
+    ---------
+       ORIGINAL LINE:
+            multiThreadLevel--;
+        NEW LINE:
+            (nothing instead)
+
+    (MapReduceFramework, Line 354)
+    In the runMapReduceFramework function (that runs the library), we decreased by
+    one the number of threads to create (meaning we created one thread less than
+    the necessary).
+    This confusion was caused due to the message in the forum, where it was written
+    that either N or N-1 threads can be created (discussed and seen by Yair during
+    the reception hour on Sunday).
+    Because the EX3 Tests counted the specific amount of threads - we failed the tests.
+    After removing this line, the number of threads matched the number of expected
+    threads.
+
+
+SUMMARY
+=======
+In total, we had 2 very minor changes to the code, due to our mistakes.
+The first, assuming that the atomic counter will not go over the limit (based on what we learned);
+The second - misunderstanding the message in the forum, that caused us to reduce the amount
+of threads created.
+We believe these are not fatal errors, but local ones, and that they do not reflect
+misunderstanding in the exercise.
+
